@@ -19,7 +19,7 @@ export default function MyLocationsScreen() {
 
   useEffect(() => {
     fetchLocations();
-  }, []);
+  }, [fetchLocations]);
 
   useEffect(() => {
     if (user && locations.length > 0) {
@@ -31,7 +31,7 @@ export default function MyLocationsScreen() {
   }, [user, locations]);
 
   const handleAddLocation = () => {
-    router.push('/add-location');
+    router.push('/add-location' as any);
   };
 
   const renderEmptyList = () => {
