@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { View, StyleSheet, Dimensions, TouchableOpacity, Text, Platform } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Text, Platform } from 'react-native';
 import { useRouter } from 'expo-router';
 import * as Location from 'expo-location';
 import { useLocationsStore } from '@/store/locations-store';
@@ -9,7 +9,8 @@ import { MapPin, AlertCircle } from 'lucide-react-native';
 
 export default function MapScreen() {
   const router = useRouter();
-  const { locations, fetchLocations, isLoading } = useLocationsStore();
+  const { locations } = useLocationsStore();
+  const fetchLocations = useLocationsStore(state => state.fetchLocations);
   const [userLocation, setUserLocation] = useState<{ latitude: number; longitude: number } | null>(null);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const { colors, isDarkMode } = useThemeStore();
@@ -33,14 +34,14 @@ export default function MapScreen() {
           latitude: location.coords.latitude,
           longitude: location.coords.longitude,
         });
-      } catch (error) {
+      } catch {
         setErrorMsg('Could not get your location');
       }
     })();
-  }, []);
+  }, [fetchLocations]);
 
   const handleMarkerPress = (locationId: string) => {
-    router.push(`/location/${locationId}`);
+    router.push(`/location/${locationId}` as any);
   };
 
   const goToUserLocation = () => {
