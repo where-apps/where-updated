@@ -1,8 +1,7 @@
 import React from "react";
-import { Tabs } from "expo-router";
+import { Tabs, useRouter } from "expo-router";
 import { MapPin, Search, User, Plus } from "lucide-react-native";
 import { TouchableOpacity, StyleSheet } from "react-native";
-import { useRouter } from "expo-router";
 import { useThemeStore } from "@/store/theme-store";
 
 export default function TabLayout() {
@@ -10,7 +9,7 @@ export default function TabLayout() {
   const { colors } = useThemeStore();
 
   const handleAddLocation = () => {
-    router.push("/add-location");
+    router.push("/add-location" as any);
   };
 
   return (
