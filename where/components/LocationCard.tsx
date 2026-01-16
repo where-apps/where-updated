@@ -14,7 +14,7 @@ export default function LocationCard({ location }: LocationCardProps) {
   const { colors } = useThemeStore();
   
   const handlePress = () => {
-    router.push(`/location/${location.id}`);
+    router.push(`/location/${location.id}` as any);
   };
 
   // Calculate average rating
@@ -27,10 +27,9 @@ export default function LocationCard({ location }: LocationCardProps) {
       ratings.streetFood +
       ratings.restaurants +
       (10 - ratings.pickpocketing) + // Invert negative ratings
-      ratings.qualityOfLife +
-      (10 - ratings.hookers) // Invert negative ratings
+      ratings.qualityOfLife
     );
-    return (sum / 8).toFixed(1);
+    return (sum / 7).toFixed(1);
   };
 
   return (
