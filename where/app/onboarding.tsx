@@ -4,17 +4,15 @@ import { useRouter } from 'expo-router';
 import { Globe, Star, Users, Compass } from 'lucide-react-native';
 import { useThemeStore } from '@/store/theme-store';
 import { LinearGradient } from 'expo-linear-gradient';
-import { useTranslation } from 'react-i18next';
 
-const { width, height } = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 
 export default function OnboardingScreen() {
   const router = useRouter();
   const { colors, isDarkMode } = useThemeStore();
-  const { t } = useTranslation();
 
   const handleGetStarted = () => {
-    router.replace('/splash');
+    router.replace('/splash' as any);
   };
 
   return (
