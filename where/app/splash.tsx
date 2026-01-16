@@ -12,13 +12,12 @@ export default function SplashScreen() {
   const { colors, isDarkMode } = useThemeStore();
 
   useEffect(() => {
-    // Automatically navigate to the welcome screen after 2 seconds
     const timer = setTimeout(() => {
-      router.replace('/welcome');
+      router.replace('/welcome' as any);
     }, 2000);
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [router]);
 
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>
