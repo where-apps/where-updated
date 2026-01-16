@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert, Platform, ScrollView } from 'react-native';
 import { useRouter } from 'expo-router';
-import { LogIn, User } from 'lucide-react-native';
+import { LogIn, User, MapPin, Lock } from 'lucide-react-native';
 import { useAuthStore } from '@/store/auth-store';
 import { useThemeStore } from '@/store/theme-store';
 
@@ -27,7 +27,7 @@ export default function LoginScreen() {
       } else {
         Alert.alert('Error', 'Invalid username or password');
       }
-    } catch (error) {
+    } catch {
       Alert.alert('Error', 'Something went wrong. Please try again.');
     } finally {
       setIsLoading(false);
@@ -43,7 +43,7 @@ export default function LoginScreen() {
       } else {
         Alert.alert('Error', 'Failed to login with Google');
       }
-    } catch (error) {
+    } catch {
       Alert.alert('Error', 'Something went wrong. Please try again.');
     } finally {
       setIsLoading(false);
@@ -64,7 +64,7 @@ export default function LoginScreen() {
       } else {
         Alert.alert('Error', 'Failed to login with Farcaster');
       }
-    } catch (error) {
+    } catch {
       Alert.alert('Error', 'Something went wrong. Please try again.');
     } finally {
       setIsLoading(false);
@@ -77,7 +77,7 @@ export default function LoginScreen() {
   };
 
   const handleSignUp = () => {
-    router.push('/auth/signup');
+    router.push('/auth/signup' as any);
   };
 
   return (
@@ -156,7 +156,7 @@ export default function LoginScreen() {
       </View>
 
       <View style={styles.footer}>
-        <Text style={[styles.footerText, { color: colors.textSecondary }]}>Don't have an account?</Text>
+        <Text style={[styles.footerText, { color: colors.textSecondary }]}>Don&apos;t have an account?</Text>
         <TouchableOpacity onPress={handleSignUp}>
           <Text style={[styles.signupText, { color: colors.primary }]}>Sign Up</Text>
         </TouchableOpacity>
@@ -164,8 +164,6 @@ export default function LoginScreen() {
     </ScrollView>
   );
 }
-
-import { MapPin, Lock } from 'lucide-react-native';
 
 const styles = StyleSheet.create({
   container: {
