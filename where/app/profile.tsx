@@ -9,25 +9,25 @@ import { useTranslation } from 'react-i18next';
 
 export default function ProfileScreen() {
   const router = useRouter();
-  const { user, isAuthenticated, isAnonymous, logout, loginWithGoogle, loginWithFarcaster } = useAuthStore();
-  const { theme, setTheme, colors, isDarkMode } = useThemeStore();
+  const { user, isAuthenticated, logout, loginWithGoogle, loginWithFarcaster } = useAuthStore();
+  const { setTheme, colors, isDarkMode } = useThemeStore();
   const { getReferralCount } = useReferralStore();
   const { t, i18n } = useTranslation();
   
   const referralCount = user ? getReferralCount(user.id) : 0;
 
   const handleLogin = () => {
-    router.push('/auth/login');
+    router.push('/auth/login' as any);
   };
 
   const handleSignup = () => {
-    router.push('/auth/signup');
+    router.push('/auth/signup' as any);
   };
 
   const handleGoogleLogin = async () => {
     try {
       await loginWithGoogle();
-    } catch (error) {
+    } catch {
       Alert.alert('Error', 'Failed to login with Google');
     }
   };
@@ -39,7 +39,7 @@ export default function ProfileScreen() {
       } else {
         Alert.alert('Not Available', 'Farcaster login is only available on web');
       }
-    } catch (error) {
+    } catch {
       Alert.alert('Error', 'Failed to login with Farcaster');
     }
   };
@@ -62,15 +62,15 @@ export default function ProfileScreen() {
   };
   
   const handleReferrals = () => {
-    router.push('/referral');
+    router.push('/referral' as any);
   };
   
   const handleMyLocations = () => {
-    router.push('/my-locations');
+    router.push('/my-locations' as any);
   };
   
   const handleSettings = () => {
-    router.push('/settings');
+    router.push('/settings' as any);
   };
   
   const toggleTheme = () => {
@@ -110,9 +110,6 @@ export default function ProfileScreen() {
 
       <View style={[styles.section, { backgroundColor: colors.card }]}>
         <Text style={[styles.sectionTitle, { color: colors.text }]}>{t('account')}</Text>
-        <View style={{ marginBottom: 12 }}>
-          {React.createElement(require('./profile-avatar-upload').default)}
-        </View>
         <TouchableOpacity 
           style={[styles.menuItem, { borderBottomColor: colors.border }]}
           onPress={handleSettings}
