@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert, Platform, ScrollView } from 'react-native';
 import { useRouter } from 'expo-router';
-import { UserPlus, User, Mail } from 'lucide-react-native';
+import { UserPlus, User, Mail, MapPin, Lock, Gift } from 'lucide-react-native';
 import { useAuthStore } from '@/store/auth-store';
 import { useThemeStore } from '@/store/theme-store';
 
@@ -35,7 +35,7 @@ export default function SignupScreen() {
       } else {
         Alert.alert('Error', 'Failed to create account');
       }
-    } catch (error) {
+    } catch {
       Alert.alert('Error', 'Something went wrong. Please try again.');
     } finally {
       setIsLoading(false);
@@ -51,7 +51,7 @@ export default function SignupScreen() {
       } else {
         Alert.alert('Error', 'Failed to login with Google');
       }
-    } catch (error) {
+    } catch {
       Alert.alert('Error', 'Something went wrong. Please try again.');
     } finally {
       setIsLoading(false);
@@ -72,7 +72,7 @@ export default function SignupScreen() {
       } else {
         Alert.alert('Error', 'Failed to login with Farcaster');
       }
-    } catch (error) {
+    } catch {
       Alert.alert('Error', 'Something went wrong. Please try again.');
     } finally {
       setIsLoading(false);
@@ -80,7 +80,7 @@ export default function SignupScreen() {
   };
 
   const handleLogin = () => {
-    router.push('/auth/login');
+    router.push('/auth/login' as any);
   };
 
   return (
@@ -205,8 +205,6 @@ export default function SignupScreen() {
     </ScrollView>
   );
 }
-
-import { MapPin, Lock, Gift } from 'lucide-react-native';
 
 const styles = StyleSheet.create({
   container: {
