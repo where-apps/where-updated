@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { View, StyleSheet, Dimensions, FlatList, Image, TouchableOpacity, Text, Platform } from 'react-native';
+import { View, StyleSheet, Dimensions, FlatList, Image, TouchableOpacity, Text } from 'react-native';
 import { useThemeStore } from '@/store/theme-store';
 import { useRouter } from 'expo-router';
 import { ChevronRight, Heart } from 'lucide-react-native';
@@ -92,7 +92,7 @@ export default function ImageCarousel({
 
   const handleViewAllImages = () => {
     if (locationId && allImages && allImages.length > 10) {
-      router.push(`/location/${locationId}/images`);
+      router.push(`/location/${locationId}/images` as any);
     }
   };
 
